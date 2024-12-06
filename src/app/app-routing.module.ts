@@ -61,8 +61,8 @@ const routes: Routes = [
   {
     path: 'sendCodeResetPassword',
     component: CheckCodeRestPasswordComponent,
-    canActivate: [WithTokenGuard],
-  },
+    canActivate: [WithTokenGuard], 
+  }, 
   {
     path: 'changePassword',
     component: ResetPasswordComponent,

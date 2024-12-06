@@ -135,8 +135,16 @@ export class ProfileComponent {
     });
   }
   
-  navigatorEdit(): void {
-    this.router.navigate([`/editUser/${this.user.id}`]);
+  navigatorEdit(rota: string): void {
+    if ( rota == '/editUser/' ) {
+      this.router.navigate([`/editUser/${this.user.id}`]);
+    } else {
+      this.router.navigate(['/changePassword/']);
+    }
+  } //Achar uma forma de unificar o navigatorPassword com o navigatorEdit
+
+  navigatorPassword(): void {
+    this.router.navigate(['/changePassword/']);
   }
 
   formatingConnection(value: string): string {
