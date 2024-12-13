@@ -47,6 +47,12 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
+import { HomeAdminComponent } from './pages/home-admin/home-admin.component';
+import { AdminActivateComponent } from './pages/admin-activate/admin-activate.component';
+
+import { CategoryTableComponent } from './pages/category-table/category-table.component';
+import { VideoViewsComponent } from './pages/video-views/video-views.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -96,7 +102,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     GridDaysComponent,
     VideoCommentComponent,
     CatalogComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    HomeAdminComponent,
+    CategoryTableComponent,
+    VideoViewsComponent,
   ],
 
   providers: [
