@@ -4,6 +4,7 @@ import { VideoService } from 'src/app/services/video.service';
 import { Catalog } from 'src/shared/model/catalog.model';
 import { IVideo } from 'src/shared/model/video.model';
 import { FormsModule } from '@angular/forms';
+import { UNB_TV_CHANNEL_ID } from 'src/app/app.constant';
 
 @Component({
   selector: 'app-catalog',
@@ -16,6 +17,7 @@ export class CatalogComponent {
   catalog: Catalog = new Catalog();
   filteredVideos: IVideo[] = [];
   filterTitle: string = '';
+  unbTvChannelId = UNB_TV_CHANNEL_ID;
 
   constructor(private videoService: VideoService, private router: Router) { }
 
@@ -57,8 +59,7 @@ export class CatalogComponent {
     );
   }
 
-  onProgramClick(videos: IVideo[]) {
-    this.videoService.setVideosCatalog(videos);
-    this.router.navigate(['/videos']);
+  onProgramClick(videosTag: string) {
+    this.router.navigate(['/videos/', videosTag]);
   }
 }
