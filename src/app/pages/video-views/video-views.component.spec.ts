@@ -5,25 +5,35 @@ import { VideoService } from 'src/app/services/video.service';
 import { VideoViewsComponent } from './video-views.component';
 import { IVideo } from 'src/shared/model/video.model';
 import { UNB_TV_CHANNEL_ID } from 'src/app/app.constant';
-import { ConfirmationService } from 'primeng/api'; // Adicione esta linha
-
+import { ConfirmationService } from 'primeng/api';
+import { FormsModule } from '@angular/forms' 
 import { HttpResponse } from '@angular/common/http';
+
+class ConfirmationServiceMock {
+  confirm() { }
+}
 
 describe('VideoViewsComponent', () => {
   let component: VideoViewsComponent;
   let fixture: ComponentFixture<VideoViewsComponent>;
   let videoService: VideoService;
+  let confirmationService: ConfirmationService;
 
   beforeEach(async () => {
+    confirmationService = jasmine.createSpyObj('ConfirmationService', ['confirm']);
+
     await TestBed.configureTestingModule({
       declarations: [VideoViewsComponent],
-      imports: [HttpClientTestingModule],
-      providers: [VideoService, ConfirmationService] // Adicione o ConfirmationService aqui
+      imports: [HttpClientTestingModule, FormsModule],
+      providers: [
+        VideoService, 
+        { provide: ConfirmationService, useValue: new ConfirmationServiceMock() }]
     }).compileComponents();
 
     fixture = TestBed.createComponent(VideoViewsComponent);
     component = fixture.componentInstance;
     videoService = TestBed.inject(VideoService);
+    confirmationService = TestBed.inject(ConfirmationService);
   });
 
   it('should create', () => {
@@ -40,7 +50,17 @@ describe('VideoViewsComponent', () => {
     expect(component.filterTitle).toBe('');
     expect(component.filterDescription).toBe('');
     expect(component.selectedCategories).toEqual({});
-    expect(component.categories).toEqual(['Jornalismo', 'Entrevista', 'Pesquisa e Ciência', 'Arte e Cultura', 'Séries Especiais', 'Documentais', 'UnBTV']);
+    expect(component.categories).toEqual([
+      "Todas",
+      "Arte e Cultura",
+      "Documentais",
+      "Entrevista",
+      "Jornalismo",
+      "Pesquisa e Ciência",
+      "Séries Especiais",
+      "UnBTV",
+      "Variedades"
+    ]);
     expect(component.sortAscending).toBeTrue();
     expect(component.isSorted).toBeFalse();
   });
@@ -50,7 +70,9 @@ describe('VideoViewsComponent', () => {
     component.ngOnInit();
     expect(component.findAll).toHaveBeenCalled();
     expect(component.filteredVideos).toEqual(component.unbTvVideos);
-    component.categories.forEach(category => expect(component.selectedCategories[category]).toBeFalse());
+    component.categories.forEach(category => {
+      expect(component.selectedCategories[category]).toBeTrue()
+    });
   });
 
   it('should fetch and process videos in findAll', () => {
@@ -118,7 +140,7 @@ describe('VideoViewsComponent', () => {
     component.filterId = '1';
     component.filterTitle = 'Video';
     component.filterDescription = 'Description';
-    component.selectedCategories = { 'Jornalismo': true, 'Entrevista': false };
+    component.selectedCategories = { 'Todas': false, 'Jornalismo': true, 'Entrevista': false };
 
     component.filterVideos();
 
@@ -155,5 +177,18 @@ describe('VideoViewsComponent', () => {
     expect(component.sortAscending).toBeFalse();
     expect(component.sortVideos).toHaveBeenCalled();
     expect(component.isSorted).toBeTrue();
+  });
+
+  it('should call confirm of confirmationService when logout is clicked', () => {
+    spyOn(component, 'logoutUser').and.callThrough();
+    const mySpy = spyOn(confirmationService, 'confirm');
+    fixture.detectChanges();
+
+    const submitButton = fixture.nativeElement.querySelector(
+      '.linkLogout'
+    );
+
+    submitButton.click();
+    expect(mySpy).toHaveBeenCalled();
   });
 });

@@ -19,13 +19,13 @@
   </div>
 
   <button id="editUser" class="w-full h-[30px] max-w-[103px] bg-blue-brand rounded-lg text-white"
-    (click)="navigatorEdit()">
+    (click)="navigatorEdit('/editUser/')">
     Editar
   </button>
 
   <div class="flex flex-initial flex-col gap-4 text-[11px] text-blue-brand">
 
-    <button id="acessaAdmin" class="rounded-lg" (click)="acessoAdmin()">
+  <button id="acessaAdmin" class="rounded-lg" (click)="acessoAdmin()" *ngIf="canShowAdminButton">
       Administração
     </button>
 
@@ -33,7 +33,7 @@
       Deseja excluir o perfil?
     </button>
 
-    <button id="changePassword">Alterar senha</button>
+    <button id="changePassword" (click)="navigatorEdit('/changePassword/')">Alterar senha</button>
 
     <button id="logout" (click)="logoutUser()">Sair</button>
   </div>

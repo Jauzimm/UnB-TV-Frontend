@@ -5,7 +5,8 @@ import { VideoService } from 'src/app/services/video.service';
 import { Catalog } from 'src/shared/model/catalog.model';
 import { IVideo } from 'src/shared/model/video.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
+import * as XLSX from 'xlsx'
 
 @Component({
   selector: 'app-category-table',
@@ -22,6 +23,7 @@ export class CategoryTableComponent {
   sortAscending: boolean = true;
   selectedColumn: string = '';
   categories: string[] = [
+    "Todas",
     "Arte e Cultura",
     "Documentais",
     "Entrevista",
@@ -30,10 +32,12 @@ export class CategoryTableComponent {
     "Séries Especiais",
     "UnBTV",
     "Variedades"
+
   ];
   filteredAggregatedVideos: any[] = [];
   selectedCategories: { [key: string]: boolean } = {};
 
+  fileName = "DadosCategoriasUnBTV.xlsx";
 
   constructor(
     private videoService: VideoService,
@@ -41,12 +45,15 @@ export class CategoryTableComponent {
     private authService: AuthService,
     private confirmationService: ConfirmationService
   ) {};
-  
+
   ngOnInit(): void{
     this.categories.forEach(category => this.selectedCategories[category] = false);
+    this.categories.forEach(category => {
+      this.selectedCategories[category] = true;
+    });
     this.findAll();
   }
-  
+
   findAll(): void {
     this.videoService.findAll().subscribe({
       next: (data) => {
@@ -91,7 +98,7 @@ export class CategoryTableComponent {
 
     this.unbTvVideos.forEach((video) => {
       const category = video['catalog'];
-      const views = video.qtAccess || 0;
+      const views = video.qtAccess ?? 0;
 
       const categoryData = categoryMap.get(category);
 
@@ -103,7 +110,7 @@ export class CategoryTableComponent {
 
     this.aggregatedVideos = Array.from(categoryMap.entries()).map(([category, data]) => ({
       category,
-      videoCount: data.count, 
+      videoCount: data.count,
       totalViews: data.views,
       viewsPerVideo: data.count > 0 ? data.views/data.count : 0
     }));
@@ -137,15 +144,28 @@ export class CategoryTableComponent {
       this.sortAscending = true;
     }
     this.sortAggregatedVideos();
-  } 
+  }
 
   filterCategories(): void {
     const selectedCategories = Object.keys(this.selectedCategories).filter(category => this.selectedCategories[category]);
-    if(selectedCategories.length === 0){
-      this.filteredAggregatedVideos = this.aggregatedVideos;
-    }
-    else{
-      this.filteredAggregatedVideos = this.aggregatedVideos.filter(video => selectedCategories.includes(video.category));  
+    if (selectedCategories.includes("Todas")) {
+      this.categories.forEach(category => {
+        this.selectedCategories[category] = true;
+      });
+     this.filteredAggregatedVideos = this.aggregatedVideos;
+    } else if (
+                !selectedCategories.includes("Todas") &&
+                this.selectedCategories["Todas"] === false &&
+                selectedCategories.length === 8
+    ) {
+          this.categories.forEach(category => {
+            this.selectedCategories[category] = false;
+          });
+          this.filteredAggregatedVideos = [];
+    } else if(selectedCategories.length === 0){
+      this.filteredAggregatedVideos = [];
+    } else{
+      this.filteredAggregatedVideos = this.aggregatedVideos.filter(video => selectedCategories.includes(video.category));
     }
     this.sortAggregatedVideos();
   }
@@ -162,5 +182,25 @@ export class CategoryTableComponent {
       reject: () => {},
     });
   }
-}
 
+  exportExcel() {
+    let data = document.getElementById("tabela-categoria");
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+
+    const columnWidths = [
+      { wch:20 },
+      { wch:10 },
+      { wch:15 },
+      { wch:20 },
+    ];
+
+    ws['!cols'] = columnWidths;
+    XLSX.utils.book_append_sheet(wb, ws,'Sheet1');
+    XLSX.writeFile(wb, this.fileName);
+  }
+
+  dummyKeyDown(event: KeyboardEvent): void {
+    // Não faz nada
+  }
+}

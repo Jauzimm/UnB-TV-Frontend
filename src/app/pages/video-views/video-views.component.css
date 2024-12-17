@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'Helvetic';
+  src: url('../../../assets/fonts/Helvetica.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: Helvetic, sans-serif;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -12,7 +23,7 @@ html, body {
 }
 
 aside {
-  width: 11em;
+  width: 13.2em;
   background-color: white;
   padding: 1em 0.75em;
   box-shadow: 0.125em 0 0.3125em rgba(0,0,0,0.1);
@@ -71,10 +82,19 @@ nav ul li a.linkSelecionado {
 
 main {
   flex: 1;
-  margin-left: 12em; /* Certifique-se de que este valor esteja sincronizado com a largura do aside */
+  margin-left: 14.2em;
   padding: 0.25em;
   display: flex;
   flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.download-button{
+  margin-right: 3em;
 }
 
 header h1 {

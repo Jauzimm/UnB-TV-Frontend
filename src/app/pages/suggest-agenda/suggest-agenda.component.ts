@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { EmailService } from 'src/app/services/email.service';
 import { EmailData } from 'src/shared/model/email.model';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { AlertService } from 'src/app/services/alert.service';
-import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-suggest-agenda',
@@ -29,11 +28,22 @@ export class SuggestAgendaComponent implements OnInit {
       quando: [''],
       local: [''],
       responsavel: ['', [Validators.required]],
-      telefoneResponsavel: ['', [Validators.required]],
+      telefoneResponsavel: ['', [this.validacaoTelefone()]],
       emailContato: ['', [Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]],
       urlVideo: ['', [this.validacaoUrl()]]
     },
     );
+  }
+
+  validacaoTelefone(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (control.value == '') {
+        return null;
+      }
+      const padrao_telefone = /^\d{8,15}$/;
+      const valido = padrao_telefone.test(control.value);
+      return valido ? null : { telefone_invalido: { value: control.value } };
+    }
   }
 
   validacaoUrl(): ValidatorFn{
@@ -71,12 +81,12 @@ export class SuggestAgendaComponent implements OnInit {
         () => {
           this.isSendingEmail = false;
         });
-    } else {
-      if(this.suggestAgendaForm.controls['urlVideo'].errors?.['url_invalida']){
-        this.alertService.showMessage("error", "Erro", "ERRO - A URL (endereço do vídeo) não é válida. Favor corrigir ou deletar.");
-      }else{
-        this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!");
-      }
-    }
+    } else if(this.suggestAgendaForm.controls['telefoneResponsavel'].errors?.['telefone_invalido']) {
+      this.alertService.showMessage("error", "Erro", "Telefone inválido.");
+    } else if(this.suggestAgendaForm.controls['urlVideo'].errors?.['url_invalida']) {
+      this.alertService.showMessage("error", "Erro", "Serviços válidos: Youtube, Google Drive, Microsoft Stream, Streamable e Vimeo.");
+    }else{
+      this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!");
+  }
   }
 }

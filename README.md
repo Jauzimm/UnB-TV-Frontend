@@ -1,24 +1,19 @@
-# UnB-TV Frontend
-
-<div align="center">
-<img src="./docs/assets/unb-removebg-preview.png" alt="logo UNBTV"> </div>
+# UnB-TV FrontEnd
 
 ## Sobre
-
-O projeto visa o desenvolvimento de uma aplicação Web e Mobile para a UnB-TV, com o objetivo de centralizar e disponibilizar de forma unificada todo o conteúdo oferecido pela UnB-TV,  incluindo vídeos e transmissões ao vivo, sendo desenvolvida no segundo semestre de 2023 pelas disciplinas de EPS e MDS da Universidade de Brasília.
+O projeto visa o desenvolvimento de uma aplicação Web e Mobile para a UnB-TV, com o objetivo de centralizar e disponibilizar de forma unificada todo o conteúdo oferecido pela UnB-TV, incluindo vídeos e transmissões ao vivo, sendo desenvolvida no segundo semestre de 2023 pelas disciplinas de EPS e MDS da Universidade de Brasília.
 
 ## Ambientes
 
-[Documentação](https://github.com/fga-eps-mds/2023.2-UnB-TV-DOC)
-[Users](https://github.com/fga-eps-mds/2023.2-UnB-TV-Users)
-[Admin](https://github.com/fga-eps-mds/2023.2-UnB-TV-Admin)
-[Video](https://github.com/fga-eps-mds/2023.2-UnB-TV-VideoService)
-[Gateway](https://github.com/fga-eps-mds/2023.2-UnB-TV-API-Gateway)
-[Frontend](https://github.com/fga-eps-mds/2023.2-UnB-TV-Frontend)
+- [FrontEnd](https://github.com/fga-eps-mds/2024.1-UnB-TV-Frontend)
+- [Users](https://github.com/fga-eps-mds/2024.1-UnB-TV-Users)
+- [Admin](https://github.com/fga-eps-mds/2024.1-UnB-TV-Admin)
+- [VideoService](https://github.com/fga-eps-mds/2024.1-UnB-TV-VideoService)
+- [Gateway](https://github.com/fga-eps-mds/2024.1-UnB-TV-API-Gateway/tree/develop)
 
-# Acessando o repositório localmente
+## Acessando o repositório localmente
 
-## Requisitos
+### Requisitos
 
 -   docker e docker compose
 
@@ -31,6 +26,10 @@ docker compose up
 ```
 
 Acessar o localhost em: http://localhost:4200
+
+## Licença
+
+Este projeto está licenciado sob a GNU Affero General Public License v3.0 (AGPL-3.0) com termos adicionais que restringem o uso deste software para fins comerciais. Para mais detalhes, consulte o arquivo [LICENSE](./LICENSE).
 
 ## Equipe EPS
 
@@ -46,10 +45,13 @@ Acessar o localhost em: http://localhost:4200
 | Foto | Nome | Github | Discord | Email | Matrícula |
 |:----:|:----:|:------:|:-------:|:-----:|:---------:|
 | <img width="100px" style="border-radius:10%" src="https://github.com/benlacerda.png" alt="Benjamim Lacerda Santos"> | Benjamim Lacerda Santos | @benlacerda | arranhaceu | benjamim.lacerda16@gmail.com | 200062123 |
-| <img width="100px" style="border-radius:10%" src="https://github.com/pimbosi.png" alt="Felipe de Jesus Rodrigues"> | Felipe de Jesus Rodrigues | @pimbosi | feliperodr0 | felipe123rodrigues1@gmail.com | 211062867 |
+| <img width="100px" style="border-radius:10%" src="https://github.com/felipeJRdev.png" alt="Felipe de Jesus Rodrigues"> | Felipe de Jesus Rodrigues | @felipeJRdev | feliperodr0 | felipe123rodrigues1@gmail.com | 211062867 |
 | <img width="100px" style="border-radius:10%" src="https://github.com/GHenriqueLima.png" alt="Gabriel Henrique Rodrigues de Lima"> | Gabriel Henrique Rodrigues de Lima  | @GHenriqueLima | gabigol.lima | ghrl2003@gmail.com | 221022284 |
 | <img width="100px" style="border-radius:10%" src="https://github.com/xzxjesse.png" alt="Jéssica Eveline Saraiva Araújo"> | Jéssica Eveline Saraiva Araújo  | @xzxjesse | xzxjesse | jessicaeveline121@gmail.com | 221022319 |
 | <img width="100px" style="border-radius:10%" src="https://github.com/jmarquees.png" alt="João Victor Marques Reis de Miranda"> | João Victor Marques Reis de Miranda  | @jmarquees | jmarquees_ | rreisjoao@gmail.com | 200058576 |
 | <img width="100px" style="border-radius:10%" src="https://github.com/Jauzimm.png" alt="João Vitor Santos de Oliveira"> | João Vitor Santos de Oliveira  | @Jauzimm | johnyjohnes | joaovitorso071@gmail.com | 221022337 |
+| <img width="100px" style="border-radius:10%" src="https://github.com/Luidooo.png" alt="Luis Eduardo Castro Mendes de Lima"> | Luis Eduardo Castro Mendes de Lima  | @Luidooo | Luido__ | eng.limaluis@gmail.com | 221008285 |
 | <img width="100px" style="border-radius:10%" src="https://github.com/PedroGusta.png" alt="Pedro Gustavo de Souza Santos"> | Pedro Gustavo de Souza Santos  | @PedroGusta | sukoh | pgustavodesouzasantos@gmail.com  | 221008605 |
+| <img width="100px" style="border-radius:10%" src="https://github.com/R-enanVieira.png" alt="Renan Vieira Guedes"> | Renan Vieira Guedes  | @R-enanVieira | renannx | renanv.guedes7@gmail.com  | 221031363 |
 | <img width="100px" style="border-radius:10%" src="https://github.com/Ruan-Carvalho.png" alt="Ruan Sobreira Carvalho"> | Ruan Sobreira Carvalho  | @Ruan-Carvalho | huebr1337 | ruansobreira11@gmail.com | 211043763 |
+| <img width="100px" style="border-radius:10%" src="https://github.com/vcpVitor.png" alt="Vitor Carvalho Pereira"> | Vitor Carvalho Pereira  | @vcpVitor | vitor_cp | vitorpereira032@gmail.com | 211062615 |
