@@ -62,5 +62,12 @@
       "sizes": "1080x1080",
       "type": "image/png"
     }
-  ]
+  ],
+  "screenshots": [
+  {
+    "src": "assets/icons/splash-wide.png",
+    "sizes": "1080x1920",
+    "type": "image/png"
+  }
+]
 }
