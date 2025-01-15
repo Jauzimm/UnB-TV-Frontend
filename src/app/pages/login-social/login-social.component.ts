@@ -68,7 +68,7 @@ export class LoginSocialComponent implements OnInit {
 
     this.sendUserDataToServer(user);
   }
-
+/*
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((user) => {
       if (user) {
@@ -76,7 +76,7 @@ export class LoginSocialComponent implements OnInit {
       }
     });
   }
-
+*/
   signOut(): void {
     this.authService.signOut();
   }
