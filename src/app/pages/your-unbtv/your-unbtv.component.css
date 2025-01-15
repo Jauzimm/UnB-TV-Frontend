@@ -1,6 +1,35 @@
 .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.25rem; /* Espaçamento entre os botões */
+}
+
+.btn {
+  width: 10rem;
+  height: 3rem;
+  background-color: rgb(0, 135, 200); /* Cor azul personalizada */
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: rgb(0, 105, 160); /* Tom mais escuro para o hover */
+}
+
+@media (min-width: 768px) {
+  .btn {
+    width: 10rem;
+    height: 3rem;
+    font-size: 1rem;
   }
+}

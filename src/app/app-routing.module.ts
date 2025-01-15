@@ -32,7 +32,7 @@ import { RecommendationVideosComponent } from './pages/recommendation-videos/rec
 import { YourUnBTVComponent } from './pages/your-unbtv/your-unbtv.component';
 import { FavoriteVideosComponent } from './pages/favorite-videos/favorite-videos.component';
 import { WatchLaterVideosComponent } from './pages/watchlater-videos/watchlater-videos.component';
-import { NotificationsComponent } from './pages/notifications/notifications.component';
+// import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { SuperAdminActivateComponent } from './pages/super-admin-activate/super-admin-activate.component';
 
 import { WithTokenGuard } from './guard/with-token.guard';
@@ -130,11 +130,11 @@ const routes: Routes = [
     component: RecordComponent, 
     canActivate: [AuthGuard]
   },
-  {
+/*  {
     path: 'notifications', 
     component: NotificationsComponent, 
     canActivate: [AuthGuard]
-  },
+  }, */
   {
     path: 'recommendation',
     component: RecommendationVideosComponent,

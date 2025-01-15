@@ -58,7 +58,7 @@ import { FavoriteVideosComponent } from './pages/favorite-videos/favorite-videos
 import { WatchLaterVideosComponent } from './pages/watchlater-videos/watchlater-videos.component';
 import { ControleSuperAdminComponent } from './pages/controle-super-admin/controle-super-admin.component';
 
-import { NotificationsComponent } from './pages/notifications/notifications.component';
+// import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 @NgModule({
   imports: [
@@ -120,7 +120,7 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
     YourUnBTVComponent,
     FavoriteVideosComponent,
     WatchLaterVideosComponent,
-    NotificationsComponent,
+//    NotificationsComponent,
     ControleSuperAdminComponent
   ],
 
