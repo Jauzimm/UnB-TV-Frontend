@@ -1,3 +1,5 @@
+/*
+
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { VideoService } from 'src/app/services/video.service';
 import { IVideo } from 'src/shared/model/video.model';
@@ -127,3 +129,5 @@ export class NotificationsComponent implements OnInit {
     return video.id ? video.id.toString() : index.toString();
   }
 }
+
+*/

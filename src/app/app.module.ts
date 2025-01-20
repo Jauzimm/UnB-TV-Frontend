@@ -12,6 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { environment } from '../app/environment/environment';
 
 // Declaration
 import {CommonModule} from '@angular/common';
@@ -58,7 +59,7 @@ import { FavoriteVideosComponent } from './pages/favorite-videos/favorite-videos
 import { WatchLaterVideosComponent } from './pages/watchlater-videos/watchlater-videos.component';
 import { ControleSuperAdminComponent } from './pages/controle-super-admin/controle-super-admin.component';
 
-import { NotificationsComponent } from './pages/notifications/notifications.component';
+// import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 @NgModule({
   imports: [
@@ -120,7 +121,7 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
     YourUnBTVComponent,
     FavoriteVideosComponent,
     WatchLaterVideosComponent,
-    NotificationsComponent,
+//    NotificationsComponent,
     ControleSuperAdminComponent
   ],
 
@@ -143,7 +144,7 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '630707499443-bnp6f3cb2ncb1clerojodfaatj8f88s4.apps.googleusercontent.com'
+              environment.googleClientId
             )
           },
           {

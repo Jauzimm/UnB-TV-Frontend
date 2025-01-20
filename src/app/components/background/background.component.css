@@ -1,3 +1,7 @@
+.mt-40 {
+  margin-top: 6.5rem;
+}
+
 :host ::ng-deep .p-button {
   background-color: transparent;
   color: #0087ce;

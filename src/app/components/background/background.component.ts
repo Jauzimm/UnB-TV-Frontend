@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
-import { NotificationService } from 'src/app/services/notification.service';
+// import { NotificationService } from 'src/app/services/notification.service';
 import { Subscription, interval } from 'rxjs';
 
 @Component({
@@ -12,67 +12,81 @@ import { Subscription, interval } from 'rxjs';
 export class BackgroundComponent implements OnInit, OnDestroy {
   items: MenuItem[] = [];
   mobileDevide: boolean = true;
-  hasNotifications: boolean = false;  // Indica se há notificações
+  // hasNotifications: boolean = false;  // Indica se há notificações
   private intervalSubscription: Subscription | null = null;
 
   constructor(
-    private notificationService: NotificationService,
+    // private notificationService: NotificationService, // Serviço de notificações (comentado)
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     console.log('BackgroundComponent initialized');
-    
+
     this.items = [
       {
         label: 'Perfil',
         routerLink: '/profile',
       },
+      /* 
       {
         label: `Notificações`,
         routerLink: '/notifications',
-        escape: false,
+        escape: false, // Evita execução de HTML direto no label
       }
+      */
     ];
 
+    /*
     // Atualiza as notificações imediatamente com base no serviço
-    this.notificationService.recommendedVideosCount$.subscribe(count => {
-      this.hasNotifications = count > 0;  // Verifica se há notificações
+    this.notificationService.recommendedVideosCount$.subscribe((count) => {
+      this.hasNotifications = count > 0; // Verifica se há notificações
       this.updateNotificationLabel();
     });
+    */
 
+    /*
     if (this.notificationService.isAuthenticated()) {
       console.log('User is authenticated');
       const token = localStorage.getItem('token') as string;
       this.notificationService.setUserIdFromToken(token);
       const userId = this.notificationService.userId;
-      this.notificationService.fetchRecommendedVideosCount(userId)
-        .subscribe(response => {
+      this.notificationService.fetchRecommendedVideosCount(userId).subscribe(
+        (response) => {
           console.log('Response from fetchRecommendedVideosCount:', response);
           this.updateNotificationCount(response);
-        });
+        }
+      );
     } else {
       console.log('User is not authenticated');
     }
+    */
 
+    /*
+    // Configuração do intervalo para verificar notificações
     this.intervalSubscription = interval(300000).subscribe(() => {
       if (this.notificationService.isAuthenticated()) {
         const token = localStorage.getItem('token') as string;
         this.notificationService.setUserIdFromToken(token);
         const userId = this.notificationService.userId;
-        this.notificationService.fetchRecommendedVideosCount(userId)
-          .subscribe(response => {
+        this.notificationService.fetchRecommendedVideosCount(userId).subscribe(
+          (response) => {
             console.log('Response from interval fetch:', response);
             this.updateNotificationCount(response);
-          });
+          }
+        );
       }
 
-      this.notificationService.recommendedVideosCount$.subscribe(count => {
-        console.log('New notifications count (from BehaviorSubject):', count);
-        this.hasNotifications = count > 0;  // Verifica se há notificações
+      this.notificationService.recommendedVideosCount$.subscribe((count) => {
+        console.log(
+          'New notifications count (from BehaviorSubject):',
+          count
+        );
+        this.hasNotifications = count > 0; // Verifica se há notificações
         this.updateNotificationLabel();
       });
     });
+    */
 
     this.identifiesUserDevice();
   }
@@ -83,6 +97,8 @@ export class BackgroundComponent implements OnInit, OnDestroy {
     }
   }
 
+  /*
+  // Atualiza a contagem de notificações
   updateNotificationCount(response: any): void {
     if (response && response.recommend_videos) {
       const count = response.recommend_videos.length;
@@ -96,6 +112,7 @@ export class BackgroundComponent implements OnInit, OnDestroy {
       this.updateNotificationLabel();
     }
   }
+  */
 
   identifiesUserDevice(): void {
     const userAgent = navigator.userAgent;
@@ -106,14 +123,21 @@ export class BackgroundComponent implements OnInit, OnDestroy {
     return window.location.pathname;
   }
 
+  /*
+  // Atualiza o label do menu de notificações
   updateNotificationLabel(): void {
     console.log('Updating notification label');
-    this.items = this.items.map(item => {
+    this.items = this.items.map((item) => {
       if (item.routerLink === '/notifications') {
-        item.label = `Notificações ${this.hasNotifications ? '<span class="notification-badge"></span>' : ''}`;
+        item.label = `Notificações ${
+          this.hasNotifications
+            ? '<span class="notification-badge"></span>'
+            : ''
+        }`;
       }
       return item;
     });
     this.cdr.detectChanges(); // Certifique-se de que a interface seja atualizada
   }
+  */
 }

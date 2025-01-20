@@ -3,6 +3,7 @@ import { SocialAuthService, SocialUser, FacebookLoginProvider } from '@abacritt/
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { environment } from 'src/app/environment/environment';
 declare let gapi: any;
 
 interface ServerResponse {
@@ -34,6 +35,7 @@ declare global {
 export class LoginSocialComponent implements OnInit {
   private user: SocialUser | null = null;
   private loggedIn: boolean = false;
+  public googleId = environment.googleClientId;
 
   constructor(
     private authService: SocialAuthService,
@@ -68,7 +70,7 @@ export class LoginSocialComponent implements OnInit {
 
     this.sendUserDataToServer(user);
   }
-
+/*
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((user) => {
       if (user) {
@@ -76,7 +78,7 @@ export class LoginSocialComponent implements OnInit {
       }
     });
   }
-
+*/
   signOut(): void {
     this.authService.signOut();
   }
