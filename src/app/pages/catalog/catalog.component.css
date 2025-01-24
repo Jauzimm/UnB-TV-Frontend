@@ -1,7 +1,10 @@
+.ng-star-inserted {
+  padding: 0 1rem;
+}
+
 .center {
   margin: 0 auto;
 }
-
 
 .thumbnail:hover {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);

@@ -1,11 +1,13 @@
 .header-title {
     color: green;
     text-align: center;
+    margin-top: 2rem;
     margin-bottom: 1em;
     font-size: 2rem;
     font-weight: bold;
     text-transform: uppercase;
 }
+
 
 .container {
     margin: 1.5em auto;
